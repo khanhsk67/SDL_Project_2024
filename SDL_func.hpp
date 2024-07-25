@@ -19,6 +19,16 @@ void logSDLError(std::ostream& os,
 
 void quitSDL(SDL_Window* window, SDL_Renderer* renderer);
 
+void waitUntilKeyPressed();
 
+bool dieuhuong(SDL_Rect& filled_rect, int&, int&);
+
+SDL_Texture* loadtexture(string path, SDL_Renderer* renderer);
+
+void HuyTexture(SDL_Texture* texture);
+
+SDL_Rect Excalibur();
+
+void AutoMove(SDL_Rect& rect);
 
 #endif // SDl_func
