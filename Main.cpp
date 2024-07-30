@@ -233,7 +233,17 @@ int main(int argc, char* argv[])
 
 
 
-          
+            SDL_RenderCopy(renderer, ghost, NULL, &ghost_rect);
+            SDL_RenderCopy(renderer, ex, NULL, &ex_rect);
+            SDL_RenderCopy(renderer, laser, NULL, &laser_rect);
+            if (movex > 0) direct = 1;
+            else if (movex < 0) direct = 0;
+            if (direct) SDL_RenderCopy(renderer, m9right, NULL, &m9_rect);
+            else SDL_RenderCopy(renderer, m9left, NULL, &m9_rect);
+            SDL_RenderPresent(renderer);
+
+
+
 
     HuyTexture(background);
     HuyTexture(m9right);
