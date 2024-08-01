@@ -244,6 +244,62 @@ int main(int argc, char* argv[])
 
 
 
+            dieuhuong(m9_rect, movex, movey);
+            if (m9_rect.x + movex < SCREEN_WIDTH && m9_rect.x + movex >= 0) m9_rect.x = m9_rect.x + movex;
+            if (m9_rect.y + movey < SCREEN_HEIGHT && m9_rect.y + movey >= 0) m9_rect.y = m9_rect.y + movey;
+
+
+            if (ghost_rect.x > m9_rect.x) ghost_rect.x = ghost_rect.x - 3;
+            else if (ghost_rect.x < m9_rect.x) ghost_rect.x = ghost_rect.x + 3;
+            if (ghost_rect.y > m9_rect.y) ghost_rect.y = ghost_rect.y - 3;
+            else if (ghost_rect.y < m9_rect.y) ghost_rect.y = ghost_rect.y + 3;
+
+
+
+            cghost++;
+            if (cghost == 250)
+            {
+                ghost_rect.x = SCREEN_WIDTH;
+                ghost_rect.y = rand() % (SCREEN_HEIGHT - ghost_rect.h);
+                cghost = 0;
+
+            }
+
+
+            ex_rect.x = ex_rect.x + i;
+
+
+            laser_rect.w = laser_rect.w + li;
+            laser_rect.x = round(laser_rect.x - li);
+
+
+            ball_rect.y = ball_rect.y + i;
+            ball_rect.x = aball * ball_rect.y + bball;
+
+
+        }
+
+        SDL_Texture* endg = loadtexture("endgame.png", renderer);
+        SDL_RenderCopy(renderer, endg, NULL, NULL);
+        SDL_RenderPresent(renderer);
+        SDL_Delay(1000);
+        SDL_Event e;
+        while (true) {
+            if (SDL_WaitEvent(&e) != 0)
+                if (e.key.keysym.sym == SDLK_ESCAPE)
+                {
+                    cont = false;
+                    break;
+                }
+                else if (e.key.keysym.sym == SDLK_r)
+                {
+                    break;
+                }
+            SDL_Delay(100);
+        }
+
+    }
+
 
     HuyTexture(background);
     HuyTexture(m9right);
