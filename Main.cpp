@@ -250,9 +250,9 @@ int main(int argc, char* argv[])
 
 
             if (ghost_rect.x > m9_rect.x) ghost_rect.x = ghost_rect.x - 3;
-            else if (ghost_rect.x < m9_rect.x) ghost_rect.x = ghost_rect.x + 3;
+            else if (ghost_rect.x < m9_rect.x) ghost_rect.x = ghost_rect.x + 1;
             if (ghost_rect.y > m9_rect.y) ghost_rect.y = ghost_rect.y - 3;
-            else if (ghost_rect.y < m9_rect.y) ghost_rect.y = ghost_rect.y + 3;
+            else if (ghost_rect.y < m9_rect.y) ghost_rect.y = ghost_rect.y + 1;
 
 
 
