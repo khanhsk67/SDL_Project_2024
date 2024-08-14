@@ -147,7 +147,7 @@ SDL_Rect Excalibur() {
 
 void AutoMove(SDL_Rect& rect)
 {
-    rect.x = rect.x + 5;
+    rect.x = rect.x + 3;
 }
 
 
