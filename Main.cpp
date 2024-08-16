@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <SDL_ttf.h>
 #include "SDL_func.hpp"
 
 using namespace std;
@@ -18,6 +19,21 @@ int main(int argc, char* argv[])
 {
     srand(time(0));
     initSDL(window, renderer);
+
+    if (TTF_Init() == -1) {
+        cout << "Failed to initialize TTF: " << TTF_GetError() << endl;
+        quitSDL(window, renderer); 
+        return -1;
+    }
+
+    TTF_Font* font = TTF_OpenFont("font.ttf", 24); 
+    if (font == nullptr) {
+        cout << "Failed to load font: " << TTF_GetError() << endl;
+        TTF_Quit();
+        quitSDL(window, renderer); 
+        return -1;
+    }
+
     SDL_Texture* background = loadtexture("background.png", renderer);
     SDL_Texture* m9right = loadtexture("m9.png", renderer);
     SDL_Texture* m9left = loadtexture("m9left.png", renderer);
