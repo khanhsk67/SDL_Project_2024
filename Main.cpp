@@ -279,4 +279,33 @@ int main(int argc, char* argv[])
 
         }
 
+        SDL_Texture* endg = loadtexture("endgame.png", renderer);
+        SDL_RenderCopy(renderer, endg, NULL, NULL);
+        SDL_RenderPresent(renderer);
+        SDL_Delay(1000);
+        SDL_Event e;
+        while (true) {
+            if (SDL_WaitEvent(&e) != 0)
+                if (e.key.keysym.sym == SDLK_ESCAPE)
+                {
+                    cont = false;
+                    break;
+                }
+                else if (e.key.keysym.sym == SDLK_r)
+                {
+                    break;
+                }
+            SDL_Delay(100);
+        }
+
     }
+
+
+    HuyTexture(background);
+    HuyTexture(m9right);
+    HuyTexture(ex);
+    quitSDL(window, renderer);
+    return 0;
+
+
+}
