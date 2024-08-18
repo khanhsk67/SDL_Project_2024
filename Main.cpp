@@ -5,7 +5,7 @@
 #include <ctime>
 #include <cmath>
 #include "SDL_func.hpp"
-#include "shield.hpp"
+#include "shield.hpp" 
 
 using namespace std;
 
@@ -18,6 +18,8 @@ int main(int argc, char* argv[]) {
     srand(time(0));
     initSDL(window, renderer);
 
+
+
     SDL_Texture* background = loadtexture("background.png", renderer);
     SDL_Texture* m9right = loadtexture("m9.png", renderer);
     SDL_Texture* m9left = loadtexture("m9left.png", renderer);
@@ -28,6 +30,7 @@ int main(int argc, char* argv[]) {
     SDL_Texture* ball3 = loadtexture("ball3.png", renderer);
     SDL_Texture* ball4 = loadtexture("ball4.png", renderer);
     SDL_Texture* ghost = loadtexture("ghost.png", renderer);
+   
 
     SDL_Rect m9_rect;
     SDL_Rect ex_rect;
@@ -35,17 +38,18 @@ int main(int argc, char* argv[]) {
     SDL_Rect ball_rect;
     SDL_Rect ghost_rect;
 
+    
     Shield shield(renderer);
-    Uint32 shieldStartTime = SDL_GetTicks();  // Lưu thời gian ban đầu
-    Uint32 shieldDuration = 5000;  // Thời gian 5 giây
+    Uint32 shieldStartTime = 3000; 
+    Uint32 shieldDuration = 5000; 
     bool isImmortal = false;
 
     bool cont = true;
 
     while (cont) {
         bool direct = 1;
-        float i = 0.5;
-        int li = 4;
+        float i = 0.2;
+        int li = 2;
         int bi = 1;
         bool x = 1;
         bool m = 1;
@@ -61,46 +65,53 @@ int main(int argc, char* argv[]) {
         ex_rect.y = rand() % (SCREEN_HEIGHT - 100) + 10;
         ex_rect.h = 60;
         ex_rect.w = 60;
+        int cex = 0;
 
         laser_rect.x = SCREEN_WIDTH - 50;
         laser_rect.y = rand() % (SCREEN_HEIGHT - 20);
         laser_rect.h = 20;
         laser_rect.w = 50;
+        int claser = 0;
 
         ball_rect.x = SCREEN_WIDTH;
         ball_rect.y = SCREEN_HEIGHT;
         ball_rect.h = 50;
         ball_rect.w = 50;
+        int cball = 0;
+        float aball = 0.05;
+        int bball = 0;
 
         ghost_rect.x = SCREEN_WIDTH;
         ghost_rect.y = 0;
         ghost_rect.h = 45;
         ghost_rect.w = 45;
+        float aghost = 0.5;
+        int bghost = 0;
+        int cghost = 0;
 
         while (x) {
             SDL_RenderCopy(renderer, background, NULL, NULL);
 
-            if (!shield.isActive && SDL_GetTicks() - shieldStartTime >= shieldDuration) {
+
+            
+            if (!shield.isActive && (rand() % 1000) < 5) {
                 shield.isActive = true;
-                shield.resetPosition(); 
-                shieldStartTime = SDL_GetTicks(); 
+                shield.resetPosition();
             }
 
+           
             shield.render(renderer);
 
-            
             if (shield.checkCollision(&m9_rect)) {
                 isImmortal = true;
-                shieldStartTime = SDL_GetTicks(); 
+                shieldStartTime = SDL_GetTicks();
             }
 
-            
             if (isImmortal && SDL_GetTicks() - shieldStartTime > shieldDuration) {
                 isImmortal = false;
             }
 
             if (!isImmortal) {
-               
                 if (m9_rect.x + m9_rect.w >= ex_rect.x &&
                     ex_rect.x + ex_rect.w >= m9_rect.x &&
                     m9_rect.y + m9_rect.h >= ex_rect.y &&
@@ -143,16 +154,23 @@ int main(int argc, char* argv[]) {
             if (m9_rect.x + movex < SCREEN_WIDTH && m9_rect.x + movex >= 0) m9_rect.x = m9_rect.x + movex;
             if (m9_rect.y + movey < SCREEN_HEIGHT && m9_rect.y + movey >= 0) m9_rect.y = m9_rect.y + movey;
 
-            if (ghost_rect.x > m9_rect.x) ghost_rect.x = ghost_rect.x - 2;
-            else if (ghost_rect.x < m9_rect.x) ghost_rect.x = ghost_rect.x + 0.5;
+            if (ghost_rect.x > m9_rect.x) ghost_rect.x = ghost_rect.x - 1;
+            else if (ghost_rect.x < m9_rect.x) ghost_rect.x = ghost_rect.x + 0,25;
             if (ghost_rect.y > m9_rect.y) ghost_rect.y = ghost_rect.y - 2;
-            else if (ghost_rect.y < m9_rect.y) ghost_rect.y = ghost_rect.y + 0.5;
+            else if (ghost_rect.y < m9_rect.y) ghost_rect.y = ghost_rect.y + 0,25;
+
+            cghost++;
+            if (cghost == 250) {
+                ghost_rect.x = SCREEN_WIDTH;
+                ghost_rect.y = rand() % (SCREEN_HEIGHT - ghost_rect.h);
+                cghost = 0;
+            }
 
             ex_rect.x = ex_rect.x + i;
-            laser_rect.w = laser_rect.w + li - 5;
-            laser_rect.x = round(laser_rect.x - li - 5);
-            ball_rect.y = ball_rect.y + i - 5;
-            ball_rect.x = aball * ball_rect.y + bball - 5;
+            laser_rect.w = laser_rect.w + li - 2;
+            laser_rect.x = round(laser_rect.x - li - 2);
+            ball_rect.y = ball_rect.y + i - 2;
+            ball_rect.x = aball * ball_rect.y + bball - 2;
         }
 
         SDL_Texture* endg = loadtexture("endgame.png", renderer);
