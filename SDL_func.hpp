@@ -9,8 +9,8 @@ using namespace std;
 
 
 const int SCREEN_WIDTH = 1200;
-const int SCREEN_HEIGHT = 650;
-const string WINDOW_TITLE = "An Implementation of Code.org Painter";
+const int SCREEN_HEIGHT = 630;
+const string WINDOW_TITLE = "Dodge to win game ver1";
 
 void initSDL(SDL_Window*& window, SDL_Renderer*& renderer);
 
@@ -28,6 +28,8 @@ SDL_Texture* loadtexture(string path, SDL_Renderer* renderer);
 void HuyTexture(SDL_Texture* texture);
 
 SDL_Rect Excalibur();
+
+string getPlayerName(SDL_Renderer* renderer);
 
 void AutoMove(SDL_Rect& rect);
 

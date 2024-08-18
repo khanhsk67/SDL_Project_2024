@@ -135,19 +135,56 @@ void HuyTexture(SDL_Texture* texture)
 }
 
 
+string getPlayerName(SDL_Renderer* renderer) {
+    string playerName = "";
+    SDL_StartTextInput();  
+
+    SDL_Event event;
+    bool done = false;
+
+    while (!done) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_TEXTINPUT) {
+                playerName += event.text.text;
+            }
+            else if (event.type == SDL_KEYDOWN) {
+                if (event.key.keysym.sym == SDLK_BACKSPACE && !playerName.empty()) {
+                    playerName.pop_back(); 
+                }
+                else if (event.key.keysym.sym == SDLK_RETURN) {
+                    done = true; 
+                }
+            }
+            else if (event.type == SDL_QUIT) {
+                done = true; 
+            }
+        }
+
+       
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
+        SDL_RenderPresent(renderer);
+    }
+
+    SDL_StopTextInput();  
+    return playerName;
+}
+
+
 
 SDL_Rect Excalibur() {
 
     SDL_Rect ex_rect;
-    ex_rect.h = 40;
-    ex_rect.w = 40;
+    ex_rect.h = 30;
+    ex_rect.w = 30;
     return ex_rect;
 
 }
 
 void AutoMove(SDL_Rect& rect)
 {
-    rect.x = rect.x + 3;
+    rect.x = rect.x + 5 ;
 }
 
 
