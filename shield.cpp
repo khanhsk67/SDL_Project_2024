@@ -1,7 +1,7 @@
 ﻿#include "shield.hpp"
 
 Shield::Shield(SDL_Renderer* renderer) {
-    shieldTexture = loadtexture("shield.png", renderer); // Đảm bảo rằng đường dẫn đúng
+    shieldTexture = loadtexture("shield.png", renderer); 
     if (shieldTexture == nullptr) {
         std::cerr << "Failed to load shield texture: " << SDL_GetError() << std::endl;
     }
