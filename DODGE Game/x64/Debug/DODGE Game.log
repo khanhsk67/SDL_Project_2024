@@ -1,0 +1,28 @@
+﻿  Main.cpp
+D:\SDL_2.0\DODGE Game\SDL_func.hpp(11,11): error C2374: 'SCREEN_WIDTH': redefinition; multiple initialization
+  (compiling source file 'Main.cpp')
+  D:\SDL_2.0\DODGE Game\SDL_func.hpp(11,11):
+  see declaration of 'SCREEN_WIDTH'
+  
+D:\SDL_2.0\DODGE Game\SDL_func.hpp(12,11): error C2374: 'SCREEN_HEIGHT': redefinition; multiple initialization
+  (compiling source file 'Main.cpp')
+  D:\SDL_2.0\DODGE Game\SDL_func.hpp(12,11):
+  see declaration of 'SCREEN_HEIGHT'
+  
+D:\SDL_2.0\DODGE Game\SDL_func.hpp(13,14): error C2374: 'WINDOW_TITLE': redefinition; multiple initialization
+  (compiling source file 'Main.cpp')
+  D:\SDL_2.0\DODGE Game\SDL_func.hpp(13,14):
+  see declaration of 'WINDOW_TITLE'
+  
+D:\SDL_2.0\DODGE Game\SDL_func.hpp(18,42): error C2572: 'logSDLError': redefinition of default argument: parameter 1
+  (compiling source file 'Main.cpp')
+  D:\SDL_2.0\DODGE Game\SDL_func.hpp(17,6):
+  see declaration of 'logSDLError'
+  
+D:\SDL_2.0\DODGE Game\Main.cpp(18,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+D:\SDL_2.0\DODGE Game\Main.cpp(51,17): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\SDL_2.0\DODGE Game\Main.cpp(81,21): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\SDL_2.0\DODGE Game\Main.cpp(169,35): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\SDL_2.0\DODGE Game\Main.cpp(171,33): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+D:\SDL_2.0\DODGE Game\Main.cpp(172,43): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+D:\SDL_2.0\DODGE Game\Main.cpp(173,55): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
